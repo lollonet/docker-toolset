@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  webui:
+    image: nebo15/alpine-pgweb
+    links:
+      - pg
+    ports:
+      - 8080:8080
+  pg:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_PASSWORD=pgpass
+    volumes:
+      - pgdata:/var/lib/postgres/data
+
+volumes:
+  pgdata:
